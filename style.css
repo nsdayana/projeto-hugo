@@ -91,7 +91,7 @@ audio {
     max-height: 350px; /* Tamanho padrão para desktop */
     display: none;
     border-radius: 10px;
-    object-fit: contain; /* VOLTOU PARA O CONTEM! */
+    object-fit: contain; /* Mantido como "contain" */
     background-color: #000;
 }
 
@@ -140,7 +140,7 @@ audio {
     white-space: normal;
 }
 
-/* --- RESPONSIVIDADE PARA CELULAR --- */
+/* --- RESPONSIVIDADE PARA CELULAR (FOTOS MAIORES) --- */
 @media (max-width: 768px) {
     .header-container, .footer-container {
         padding: 5px;
@@ -158,7 +158,7 @@ audio {
     }
 
     .carousel-img {
-        max-height: 250px; /* AUMENTADO: Um pouco maior para tablets/celulares em paisagem */
+        max-height: 300px; /* MAIOR: Para tablets/celulares em paisagem */
     }
 
     .love-timer {
@@ -187,7 +187,7 @@ audio {
     }
     
     .carousel-img {
-        max-height: 200px; /* AUMENTADO: Para iPhone 12 Mini em retrato */
+        max-height: 240px; /* MAIOR: Para iPhone 12 Mini em retrato */
     }
 
     .love-timer {
@@ -204,7 +204,7 @@ audio {
     .content-container {
     }
     .carousel-img {
-        max-height: 160px; /* AUMENTADO: Para telas muito pequenas */
+        max-height: 180px; /* MAIOR: Para telas muito pequenas */
     }
     .love-timer {
         font-size: 0.85em;
@@ -220,7 +220,7 @@ audio {
         padding: 5px;
     }
     .carousel-img {
-        max-height: 160px; /* AUMENTADO: Para paisagem, para que não fiquem tão pequenas */
+        max-height: 180px; /* MAIOR: Para paisagem, para que não fiquem tão pequenas */
     }
     .love-timer {
         font-size: 0.9em;
