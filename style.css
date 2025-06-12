@@ -17,16 +17,16 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    min-height: 100vh;
+    /* min-height: 100vh; REMOVIDO para evitar barra cinza extra e dar mais flexibilidade */
+    min-height: -webkit-fill-available; /* Para iOS ajustar o 100vh corretamente */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start; /* Alinha o conteúdo ao topo, dando espaço para o rodapé */
     align-items: center;
     position: relative;
-    padding-bottom: 5px;
-    /* Remover overflow hidden para permitir rolagem, se necessário */
-    overflow-y: auto; /* Permite rolagem vertical apenas se o conteúdo exceder */
-    overflow-x: hidden; /* Garante que não haja rolagem horizontal */
+    padding-bottom: 0; /* Remover padding no final do body */
+    overflow-y: auto; 
+    overflow-x: hidden;
 }
 
 /* Header */
@@ -55,22 +55,21 @@ audio {
 
 /* Conteúdo Principal */
 .content-container {
-    flex-grow: 1;
+    flex-grow: 1; /* Permite que cresça para ocupar espaço */
     display: flex;
     justify-content: center;
     align-items: center;
     width: 90%;
     max-width: 750px;
-    margin: 10px auto;
+    margin: 10px auto; /* Margem reduzida para cima e para baixo */
     padding: 10px;
     background-color: var(--overlay-color);
     border-radius: 20px;
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(5px);
     box-sizing: border-box;
-    /* Nova propriedade para limitar a altura do contêiner principal em telas pequenas */
-    max-height: 70vh; /* Limita a altura máxima a 70% da altura da viewport */
-    overflow-y: auto; /* Adiciona rolagem interna se o conteúdo exceder essa altura */
+    max-height: 70vh; /* Ainda limita a altura máxima em telas grandes */
+    overflow-y: auto; 
 }
 
 .carousel {
@@ -80,9 +79,8 @@ audio {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Mantém as imagens dentro do carrossel */
+    overflow: hidden; 
     border-radius: 15px;
-    box-shadow: none;
     background-color: transparent;
     padding: 0;
     box-sizing: border-box;
@@ -91,7 +89,7 @@ audio {
 .carousel-img {
     width: 100%;
     height: auto;
-    max-height: 300px; /* Reduzida para que as fotos não tomem tanto espaço no desktop */
+    max-height: 350px; /* Aumentado para desktop */
     display: none;
     border-radius: 10px;
     object-fit: contain;
@@ -118,7 +116,7 @@ audio {
     z-index: 10;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    margin-top: auto;
+    margin-top: 10px; /* Reduzida a margem superior para subir a frase */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -142,7 +140,7 @@ audio {
     white-space: normal;
 }
 
-/* Responsividade para o cronômetro e layout */
+/* --- RESPONSIVIDADE PARA CELULAR --- */
 @media (max-width: 768px) {
     .header-container, .footer-container {
         padding: 5px;
@@ -155,24 +153,28 @@ audio {
 
     .content-container {
         width: 95%;
-        margin: 8px auto;
+        margin: 5px auto; /* Margem ainda mais reduzida */
         padding: 8px;
-        max-height: 60vh; /* Ajuste para telas médias */
+        max-height: 50vh; /* Ajuste para telas médias, liberando mais espaço */
     }
 
     .carousel-img {
-        max-height: 200px; /* Reduz a altura máxima das imagens em telas médias */
+        max-height: 180px; /* Aumentado para telas médias (tablet/celular na horizontal) */
     }
 
     .love-timer {
         font-size: 1.1em;
         line-height: 1.3;
     }
+
+    .footer-container {
+        margin-top: 5px; /* Reduz margem no celular */
+    }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 480px) { /* Inclui iPhone 12 mini (375px de largura) */
     body {
-        padding-bottom: 1px;
+        padding-bottom: 0;
     }
     .header-container, .footer-container {
         padding: 3px;
@@ -182,29 +184,33 @@ audio {
     .content-container {
         border-radius: 10px;
         padding: 5px;
-        margin: 5px auto;
-        max-height: 55vh; /* Mais agressivo para telas de celular pequenas */
+        margin: 5px auto; /* Margem mínima */
+        max-height: 45vh; /* Ainda mais restritivo para celulares, para garantir espaço */
     }
     
     .carousel-img {
-        max-height: 120px; /* Reduz ainda mais a altura das imagens em celulares pequenos */
+        max-height: 140px; /* Aumentado para celular, para não ficar minúscula */
     }
 
     .love-timer {
-        font-size: 0.9em; /* Aumentado um pouco para celular, pois teremos mais espaço vertical */
+        font-size: 0.95em; /* Ajustado para caber e ser legível */
         line-height: 1.4;
+    }
+
+    .footer-container {
+        margin-top: 5px; /* Reduz ainda mais a margem no celular */
     }
 }
 
 @media (max-width: 320px) {
     .content-container {
-        max-height: 50vh; /* Para celulares muito pequenos */
+        max-height: 40vh; /* Para celulares muito pequenos */
     }
     .carousel-img {
-        max-height: 100px;
+        max-height: 100px; /* Mantido menor para telas mínimas */
     }
     .love-timer {
-        font-size: 0.8em;
+        font-size: 0.85em; /* Fonte ainda menor */
         line-height: 1.5;
         padding: 0;
     }
@@ -215,13 +221,16 @@ audio {
     .content-container {
         margin: 3px auto;
         padding: 5px;
-        max-height: 50vh; /* Ajuste crítico para paisagem em telas compactas */
+        max-height: 60vh; /* Mais espaço vertical em paisagem para o conteúdo */
     }
     .carousel-img {
-        max-height: 80px; /* Muito restritivo para paisagem em telas pequenas */
+        max-height: 100px; /* Aumentado para paisagem */
     }
     .love-timer {
-        font-size: 0.9em; /* Levemente maior que antes para paisagem */
+        font-size: 0.9em; /* Aumentado para paisagem */
         line-height: 1.3;
+    }
+    .footer-container {
+        margin-top: 5px;
     }
 }
