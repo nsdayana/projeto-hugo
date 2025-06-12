@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
+@import url('https://fonts.com/css2?family=Montserrat:wght@300;700&display=swap');
 
 :root {
     --primary-color: #e0f2f7; /* Azul clarinho */
@@ -24,20 +24,23 @@ body {
     justify-content: space-between;
     align-items: center;
     position: relative;
-    padding-bottom: 5px; /* Padding menor no final do body */
+    padding-bottom: 5px;
+    /* Aplicado backdrop-filter ao body para efeito global, se desejar */
+    /* backdrop-filter: blur(5px); */ /* Descomente esta linha se quiser o GIF borrado em TODO o fundo */
 }
 
 /* Header */
 .header-container {
     width: 100%;
-    padding: 8px 15px; /* Padding reduzido para menos espaço vertical */
+    padding: 8px 15px;
     display: flex;
     justify-content: center;
-    background-color: var(--overlay-color);
+    background-color: var(--overlay-color); /* Fundo transparente para o header */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     z-index: 10;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    backdrop-filter: blur(5px); /* Efeito de blur apenas no header */
 }
 
 /* Estilos para o elemento de áudio */
@@ -47,10 +50,10 @@ audio {
     outline: none;
     border-radius: 20px;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-    filter: invert(1); /* Deixa os controles brancos */
+    filter: invert(1);
 }
 
-/* Conteúdo Principal (removido fundo e blur para ter UM quadrado apenas nas fotos) */
+/* Conteúdo Principal - Voltou a ter seu próprio fundo e blur */
 .content-container {
     flex-grow: 1;
     display: flex;
@@ -58,12 +61,12 @@ audio {
     align-items: center;
     width: 90%;
     max-width: 750px;
-    margin: 10px auto; /* Margem reduzida para subir o conteúdo */
-    padding: 0; /* Removido padding interno para focar no carrossel */
-    /* Removido: background-color: var(--overlay-color); */
-    border-radius: 20px; /* Mantém o border-radius do contêiner geral */
-    box-shadow: none; /* Removido box-shadow daqui, será no carrossel */
-    /* Removido: backdrop-filter: blur(5px); */
+    margin: 10px auto;
+    padding: 10px; /* Padding interno para o conteúdo */
+    background-color: var(--overlay-color); /* Fundo transparente para o contêiner principal */
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px); /* Efeito de blur no contêiner principal */
     box-sizing: border-box;
 }
 
@@ -76,10 +79,10 @@ audio {
     align-items: center;
     overflow: hidden;
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); /* Sombra para o "um quadrado" */
-    background-color: var(--overlay-color); /* Fundo para o "um quadrado" */
-    padding: 5px; /* Adicionado um pequeno padding interno para o carrossel */
-    box-sizing: border-box; /* Garante que padding seja incluído na largura */
+    box-shadow: none; /* Removido box-shadow daqui para evitar "segundo quadrado" */
+    background-color: transparent; /* Fundo transparente, o fundo virá do content-container */
+    padding: 0; /* Removido padding interno, já tem no content-container */
+    box-sizing: border-box;
 }
 
 .carousel-img {
@@ -87,7 +90,7 @@ audio {
     height: auto;
     max-height: 380px;
     display: none;
-    border-radius: 10px; /* Levemente menor para não brigar com o carousel */
+    border-radius: 10px;
     object-fit: contain;
     background-color: #000;
 }
@@ -105,8 +108,8 @@ audio {
 /* Footer */
 .footer-container {
     width: 100%;
-    padding: 8px; /* Padding reduzido para menos espaço vertical */
-    background-color: var(--overlay-color);
+    padding: 8px;
+    background-color: var(--overlay-color); /* Fundo transparente para o footer */
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
     z-index: 10;
@@ -117,13 +120,14 @@ audio {
     align-items: center;
     justify-content: center;
     min-height: 50px;
+    backdrop-filter: blur(5px); /* Efeito de blur apenas no footer */
 }
 
 .love-timer {
     font-family: "WDXL Lubrifont TC", sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 1.4em; /* Tamanho base aumentado um pouco, já que permitimos rolagem */
+    font-size: 1.4em;
     color: var(--text-color-light);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
     margin: 0;
@@ -138,7 +142,7 @@ audio {
 /* Responsividade para o cronômetro e layout */
 @media (max-width: 768px) {
     .header-container, .footer-container {
-        padding: 5px; /* Ainda mais reduzido */
+        padding: 5px;
     }
 
     audio {
@@ -148,12 +152,12 @@ audio {
 
     .content-container {
         width: 95%;
-        margin: 8px auto; /* Margem ajustada */
-        padding: 0;
+        margin: 8px auto;
+        padding: 8px; /* Mantém padding para o conteúdo interno */
     }
 
     .carousel {
-        padding: 3px; /* Padding interno do carrossel reduzido */
+        padding: 0; /* Removido padding interno do carrossel */
     }
 
     .carousel-img {
@@ -161,44 +165,43 @@ audio {
     }
 
     .love-timer {
-        font-size: 1.1em; /* Tamanho para telas médias */
+        font-size: 1.1em;
         line-height: 1.3;
     }
 }
 
-@media (max-width: 480px) { /* Inclui iPhone 12 mini (375px de largura) */
+@media (max-width: 480px) {
     body {
         padding-bottom: 1px;
     }
     .header-container, .footer-container {
-        padding: 3px; /* Padding mínimo */
+        padding: 3px;
         border-radius: 0;
     }
 
     .content-container {
         border-radius: 10px;
-        padding: 0;
-        margin: 5px auto; /* Margem mínima */
+        padding: 5px; /* Mantém padding para o conteúdo interno */
+        margin: 5px auto;
     }
     
     .carousel {
-        padding: 2px; /* Padding interno do carrossel reduzido */
+        padding: 0;
     }
 
     .carousel-img {
-        max-height: 150px; /* Mais restritivo para mobile portrait */
+        max-height: 150px;
     }
 
     .love-timer {
-        font-size: 0.9em; /* Aumentado um pouco para iPhone 12 Mini */
+        font-size: 0.9em;
         line-height: 1.4;
     }
 }
 
-/* Nova media query para telas muito, muito pequenas (abaixo do iPhone 12 mini, ex: 320px) */
 @media (max-width: 320px) {
     .love-timer {
-        font-size: 0.8em; /* Fonte ainda menor, mas não invisível */
+        font-size: 0.8em;
         line-height: 1.5;
         padding: 0;
     }
@@ -207,20 +210,19 @@ audio {
     }
 }
 
-/* Adicionando uma media query para o iPhone 12 mini específico em paisagem */
 @media (max-width: 812px) and (max-height: 375px) and (orientation: landscape) {
     .content-container {
-        margin: 3px auto; /* Ajusta margem para paisagem */
-        padding: 0;
+        margin: 3px auto;
+        padding: 5px; /* Mantém padding para o conteúdo interno */
     }
     .carousel {
-        padding: 1px;
+        padding: 0;
     }
     .carousel-img {
-        max-height: 100px; /* Muito restritivo para paisagem em telas pequenas */
+        max-height: 100px;
     }
     .love-timer {
-        font-size: 0.8em; /* Fonte menor para paisagem em telas compactas */
+        font-size: 0.8em;
         line-height: 1.3;
     }
 }
