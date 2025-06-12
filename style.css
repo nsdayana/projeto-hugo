@@ -14,7 +14,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: var(--text-color-light);
     overflow: hidden; /* Tenta remover a rolagem em ambos os eixos */
-    background-image: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3I2c2lxY3NlcmFzcTBlbDl1c3lwd3YzMXZhODhzMm1xZnNoMWlwYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UYBDCJjwOd9Re/giphy.gif');
+    background-image: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3I2c2lxY3NlcmFzcTBlbDl1c3lwd3YzMXZhODhzMm1xZnNoMWlwYSZlcD1vMV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UYBDCJjwOd9Re/giphy.gif');
     background-size: cover; /* Faz o GIF cobrir todo o fundo */
     background-position: center; /* Centraliza o GIF */
     background-attachment: fixed; /* Mantém o GIF fixo ao rolar */
@@ -117,13 +117,16 @@ audio {
     font-family: "WDXL Lubrifont TC", sans-serif; /* Usando a fonte carregada pelo Google Fonts */
     font-weight: 400; /* Peso da fonte conforme o Google Fonts */
     font-style: normal; /* Estilo normal da fonte */
-    font-size: 1.6em; /* Levemente menor para caber */
+    font-size: 1.6em; /* Tamanho padrão para telas maiores */
     color: var(--text-color-light); /* Cor branca */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Sombra mais fina */
     margin: 0;
     padding: 0;
     line-height: 1.2; /* Ajusta a altura da linha se a fonte parecer muito junta */
     text-align: center; /* Garante que o texto esteja centralizado */
+    /* Adicionado para ajudar na quebra de linha em telas pequenas */
+    word-wrap: break-word; /* Permite quebras de linha dentro de palavras longas */
+    overflow-wrap: break-word; /* Similar ao word-wrap, para maior compatibilidade */
 }
 
 /* Responsividade para o cronômetro ficar menor em telas pequenas */
@@ -148,7 +151,7 @@ audio {
     }
 
     .love-timer {
-        font-size: 1.2em;
+        font-size: 1.1em; /* Reduz um pouco mais para tablets/smartphones na horizontal */
     }
 }
 
@@ -172,7 +175,15 @@ audio {
     }
 
     .love-timer {
-        font-size: 1em; /* Tamanho de fonte menor para caber em telas mínimas */
-        word-break: break-word; /* Permite quebrar palavras em caso de espaço muito limitado */
+        font-size: 0.85em; /* Reduz ainda mais a fonte para caber em telas muito pequenas */
+        /* word-break: break-word; */ /* Já substituído por word-wrap/overflow-wrap em .love-timer */
+    }
+}
+
+/* Adicionando uma media query para telas muito, muito pequenas (ex: iPhones SE antigos) */
+@media (max-width: 320px) {
+    .love-timer {
+        font-size: 0.75em; /* Fonte ainda menor para caber em telas mínimas */
+        line-height: 1.3; /* Pode aumentar a linha para melhor legibilidade com fonte pequena */
     }
 }
