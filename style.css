@@ -17,11 +17,11 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    min-height: 100vh; /* Voltamos com 100vh para o body para garantir a altura total */
-    min-height: -webkit-fill-available; /* Para iOS */
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Distribui espaço entre os itens */
+    justify-content: space-between;
     align-items: center;
     position: relative;
     padding-bottom: 0;
@@ -55,7 +55,7 @@ audio {
 
 /* Conteúdo Principal */
 .content-container {
-    flex-grow: 1; /* Permite que o contêiner de fotos ocupe o espaço restante */
+    flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,9 +68,7 @@ audio {
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(5px);
     box-sizing: border-box;
-    /* max-height: 70vh; REMOVIDO para que o flex-grow decida a altura em desktop,
-       e controlaremos isso melhor em mobile. */
-    overflow-y: auto; /* Permite rolagem interna se o conteúdo exceder */
+    overflow-y: auto; 
 }
 
 .carousel {
@@ -89,11 +87,11 @@ audio {
 
 .carousel-img {
     width: 100%;
-    height: auto;
-    max-height: 350px; /* Mantido grande para desktop */
+    height: auto; /* Mantém a altura flexível */
+    max-height: 350px; /* Tamanho padrão para desktop */
     display: none;
     border-radius: 10px;
-    object-fit: contain;
+    object-fit: contain; /* VOLTOU PARA O CONTEM! */
     background-color: #000;
 }
 
@@ -117,13 +115,13 @@ audio {
     z-index: 10;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    margin-top: 10px; /* Margem padrão para desktop */
+    margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 50px;
     backdrop-filter: blur(5px);
-    flex-shrink: 0; /* Impede que o rodapé encolha, mantendo a altura mínima */
+    flex-shrink: 0;
 }
 
 .love-timer {
@@ -157,11 +155,10 @@ audio {
         width: 95%;
         margin: 5px auto;
         padding: 8px;
-        /* max-height: 50vh; REMOVIDO para que as imagens se ajustem melhor */
     }
 
     .carousel-img {
-        max-height: 250px; /* Aumentado bastante para tablets/celulares em paisagem */
+        max-height: 250px; /* AUMENTADO: Um pouco maior para tablets/celulares em paisagem */
     }
 
     .love-timer {
@@ -170,7 +167,7 @@ audio {
     }
 
     .footer-container {
-        margin-top: 5px; /* Mantém a margem reduzida no celular */
+        margin-top: 5px;
     }
 }
 
@@ -187,11 +184,10 @@ audio {
         border-radius: 10px;
         padding: 5px;
         margin: 5px auto;
-        /* max-height: 45vh; REMOVIDO */
     }
     
     .carousel-img {
-        max-height: 180px; /* Aumentado para celular, para não ficar minúscula */
+        max-height: 200px; /* AUMENTADO: Para iPhone 12 Mini em retrato */
     }
 
     .love-timer {
@@ -206,10 +202,9 @@ audio {
 
 @media (max-width: 320px) {
     .content-container {
-        /* max-height: 40vh; REMOVIDO */
     }
     .carousel-img {
-        max-height: 140px; /* Aumentado para telas muito pequenas */
+        max-height: 160px; /* AUMENTADO: Para telas muito pequenas */
     }
     .love-timer {
         font-size: 0.85em;
@@ -223,10 +218,9 @@ audio {
     .content-container {
         margin: 3px auto;
         padding: 5px;
-        /* max-height: 60vh; REMOVIDO */
     }
     .carousel-img {
-        max-height: 120px; /* Aumentado para paisagem */
+        max-height: 160px; /* AUMENTADO: Para paisagem, para que não fiquem tão pequenas */
     }
     .love-timer {
         font-size: 0.9em;
