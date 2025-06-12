@@ -13,8 +13,7 @@ body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     color: var(--text-color-light);
-    /* Manter overflow hidden aqui, mas ciente que pode cortar se o layout for muito apertado */
-    overflow: hidden;
+    /* Removido: overflow: hidden; -> AGORA PODE ROLAR! */
     background-image: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3I2c2lxY3NlcmFzcTBlbDl1c3lwd3YzMXZhODhzMm1xZnNoMWlwYSZlcD1vMV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UYBDCJjwOd9Re/giphy.gif');
     background-size: cover;
     background-position: center;
@@ -25,13 +24,13 @@ body {
     justify-content: space-between;
     align-items: center;
     position: relative;
-    padding-bottom: 5px; /* Reduzido para dar mais espaço */
+    padding-bottom: 5px; /* Padding menor no final do body */
 }
 
 /* Header */
 .header-container {
     width: 100%;
-    padding: 10px 20px; /* Reduzido para dar mais espaço vertical */
+    padding: 8px 15px; /* Padding reduzido para menos espaço vertical */
     display: flex;
     justify-content: center;
     background-color: var(--overlay-color);
@@ -51,20 +50,20 @@ audio {
     filter: invert(1); /* Deixa os controles brancos */
 }
 
-/* Conteúdo Principal */
+/* Conteúdo Principal (removido fundo e blur para ter UM quadrado apenas nas fotos) */
 .content-container {
     flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90%; /* Aumentei um pouco para tentar usar mais espaço */
+    width: 90%;
     max-width: 750px;
-    margin: 20px auto; /* Reduzido para dar mais espaço vertical */
-    padding: 15px;
-    background-color: var(--overlay-color);
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
+    margin: 10px auto; /* Margem reduzida para subir o conteúdo */
+    padding: 0; /* Removido padding interno para focar no carrossel */
+    /* Removido: background-color: var(--overlay-color); */
+    border-radius: 20px; /* Mantém o border-radius do contêiner geral */
+    box-shadow: none; /* Removido box-shadow daqui, será no carrossel */
+    /* Removido: backdrop-filter: blur(5px); */
     box-sizing: border-box;
 }
 
@@ -77,15 +76,18 @@ audio {
     align-items: center;
     overflow: hidden;
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); /* Sombra para o "um quadrado" */
+    background-color: var(--overlay-color); /* Fundo para o "um quadrado" */
+    padding: 5px; /* Adicionado um pequeno padding interno para o carrossel */
+    box-sizing: border-box; /* Garante que padding seja incluído na largura */
 }
 
 .carousel-img {
     width: 100%;
     height: auto;
-    max-height: 380px; /* Levemente reduzido para iPhone 12 mini */
+    max-height: 380px;
     display: none;
-    border-radius: 15px;
+    border-radius: 10px; /* Levemente menor para não brigar com o carousel */
     object-fit: contain;
     background-color: #000;
 }
@@ -103,7 +105,7 @@ audio {
 /* Footer */
 .footer-container {
     width: 100%;
-    padding: 10px; /* Reduzido para dar mais espaço vertical */
+    padding: 8px; /* Padding reduzido para menos espaço vertical */
     background-color: var(--overlay-color);
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
@@ -111,33 +113,32 @@ audio {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     margin-top: auto;
-    /* Novas propriedades para garantir que o conteúdo seja centralizado verticalmente */
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 50px; /* Garante uma altura mínima para o rodapé */
+    min-height: 50px;
 }
 
 .love-timer {
     font-family: "WDXL Lubrifont TC", sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 1.2em; /* Tamanho padrão já menor para telas maiores */
+    font-size: 1.4em; /* Tamanho base aumentado um pouco, já que permitimos rolagem */
     color: var(--text-color-light);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
     margin: 0;
-    padding: 2px; /* Padding vertical mínimo */
-    line-height: 1.2; /* Altura de linha ajustada */
+    padding: 2px;
+    line-height: 1.2;
     text-align: center;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    white-space: normal; /* Garante que o texto não tente ficar em uma única linha */
+    white-space: normal;
 }
 
-/* Responsividade para o cronômetro */
+/* Responsividade para o cronômetro e layout */
 @media (max-width: 768px) {
     .header-container, .footer-container {
-        padding: 8px;
+        padding: 5px; /* Ainda mais reduzido */
     }
 
     audio {
@@ -147,65 +148,79 @@ audio {
 
     .content-container {
         width: 95%;
-        margin: 10px auto;
-        padding: 8px;
+        margin: 8px auto; /* Margem ajustada */
+        padding: 0;
+    }
+
+    .carousel {
+        padding: 3px; /* Padding interno do carrossel reduzido */
     }
 
     .carousel-img {
-        max-height: 280px; /* Ajuste para tablets/smartphones na horizontal */
+        max-height: 250px;
     }
 
     .love-timer {
-        font-size: 0.9em; /* Para telas médias (ex: iPhone 12 mini em paisagem) */
+        font-size: 1.1em; /* Tamanho para telas médias */
         line-height: 1.3;
     }
 }
 
 @media (max-width: 480px) { /* Inclui iPhone 12 mini (375px de largura) */
     body {
-        padding-bottom: 2px; /* Ainda menos padding */
+        padding-bottom: 1px;
     }
     .header-container, .footer-container {
-        padding: 5px; /* Padding bem reduzido */
+        padding: 3px; /* Padding mínimo */
         border-radius: 0;
     }
 
     .content-container {
         border-radius: 10px;
-        padding: 5px; /* Padding reduzido */
-        margin: 5px auto; /* Margem reduzida */
+        padding: 0;
+        margin: 5px auto; /* Margem mínima */
+    }
+    
+    .carousel {
+        padding: 2px; /* Padding interno do carrossel reduzido */
     }
 
     .carousel-img {
-        max-height: 180px; /* Mais restritivo para mobile portrait */
+        max-height: 150px; /* Mais restritivo para mobile portrait */
     }
 
     .love-timer {
-        font-size: 0.75em; /* Fonte menor para caber na largura do iPhone 12 mini */
-        line-height: 1.4; /* Espaçamento de linha confortável */
+        font-size: 0.9em; /* Aumentado um pouco para iPhone 12 Mini */
+        line-height: 1.4;
     }
 }
 
-/* Nova media query para telas muito, muito pequenas (abaixo do iPhone 12 mini) */
+/* Nova media query para telas muito, muito pequenas (abaixo do iPhone 12 mini, ex: 320px) */
 @media (max-width: 320px) {
     .love-timer {
-        font-size: 0.65em; /* Fonte ainda menor */
+        font-size: 0.8em; /* Fonte ainda menor, mas não invisível */
         line-height: 1.5;
-        padding: 0; /* Remover todo o padding do texto se necessário */
+        padding: 0;
+    }
+    .carousel-img {
+        max-height: 120px;
     }
 }
 
-/* Adicionando uma media query para o iPhone 12 mini específico em paisagem (812px de largura, 375px de altura) */
+/* Adicionando uma media query para o iPhone 12 mini específico em paisagem */
 @media (max-width: 812px) and (max-height: 375px) and (orientation: landscape) {
     .content-container {
-        margin: 5px auto; /* Ajusta margem para paisagem */
-        padding: 5px;
+        margin: 3px auto; /* Ajusta margem para paisagem */
+        padding: 0;
+    }
+    .carousel {
+        padding: 1px;
     }
     .carousel-img {
-        max-height: 150px; /* Ainda mais restritivo em paisagem para telas pequenas */
+        max-height: 100px; /* Muito restritivo para paisagem em telas pequenas */
     }
     .love-timer {
-        font-size: 0.7em; /* Fonte menor para paisagem em telas compactas */
+        font-size: 0.8em; /* Fonte menor para paisagem em telas compactas */
         line-height: 1.3;
     }
 }
