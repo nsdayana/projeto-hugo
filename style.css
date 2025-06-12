@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
+
+:root {
+    --primary-color: #e0f2f7; /* Azul clarinho */
+    --secondary-color: #a7d9f7; /* Azul médio */
+    --accent-color: #ffb6c1; /* Rosa claro */
+    --text-color-dark: #333;
+    --text-color-light: #fff;
+    --overlay-color: rgba(0, 0, 0, 0.4); /* Transparência para elementos */
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color-light);
+    overflow: hidden; /* Tenta remover a rolagem em ambos os eixos */
+    background-image: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3I2c2lxY3NlcmFzcTBlbDl1c3lwd3YzMXZhODhzMm1xZnNoMWlwYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UYBDCJjwOd9Re/giphy.gif');
+    background-size: cover; /* Faz o GIF cobrir todo o fundo */
+    background-position: center; /* Centraliza o GIF */
+    background-attachment: fixed; /* Mantém o GIF fixo ao rolar */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding-bottom: 10px; /* Um pequeno padding para não ficar colado no final */
+}
+
+/* Header */
+.header-container {
+    width: 100%;
+    padding: 15px 20px; /* Reduz um pouco o padding superior/inferior */
+    display: flex;
+    justify-content: center;
+    background-color: var(--overlay-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+/* Estilos para o elemento de áudio */
+audio {
+    width: 80%;
+    max-width: 350px;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    filter: invert(1); /* Deixa os controles brancos */
+}
+
+
+/* Conteúdo Principal */
+.content-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 88%; /* Levemente menor */
+    max-width: 750px; /* Levemente menor */
+    margin: 25px auto; /* Reduz a margem superior/inferior */
+    padding: 15px; /* Reduz o padding interno */
+    background-color: var(--overlay-color);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura/altura */
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.carousel-img {
+    width: 100%;
+    height: auto;
+    max-height: 400px; /* Limita a altura das fotos para tentar evitar rolagem */
+    display: none;
+    border-radius: 15px;
+    object-fit: contain;
+    background-color: #000;
+}
+
+.carousel-img.active {
+    display: block;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Footer */
+.footer-container {
+    width: 100%;
+    padding: 20px; /* Reduz o padding superior/inferior */
+    background-color: var(--overlay-color);
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center; /* Centraliza o texto */
+    z-index: 10;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-top: auto;
+}
+
+.love-timer {
+    font-family: "WDXL Lubrifont TC", sans-serif; /* Usando a fonte carregada pelo Google Fonts */
+    font-weight: 400; /* Peso da fonte conforme o Google Fonts */
+    font-style: normal; /* Estilo normal da fonte */
+    font-size: 1.6em; /* Levemente menor para caber */
+    color: var(--text-color-light); /* Cor branca */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Sombra mais fina */
+    margin: 0;
+    padding: 0;
+    line-height: 1.2; /* Ajusta a altura da linha se a fonte parecer muito junta */
+    text-align: center; /* Garante que o texto esteja centralizado */
+}
+
+/* Responsividade para o cronômetro ficar menor em telas pequenas */
+@media (max-width: 768px) {
+    .header-container, .footer-container {
+        padding: 10px;
+    }
+
+    audio { /* Aplica os estilos novamente para o elemento audio */
+        width: 95%; /* Ocupa mais espaço em telas menores */
+        max-width: none; /* Remove limite máximo */
+    }
+
+    .content-container {
+        width: 95%;
+        margin: 15px auto;
+        padding: 10px;
+    }
+
+    .carousel-img {
+        max-height: 300px; /* Mais restritivo em mobile */
+    }
+
+    .love-timer {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding-bottom: 5px;
+    }
+    .header-container, .footer-container {
+        padding: 8px;
+        border-radius: 0;
+    }
+
+    .content-container {
+        border-radius: 10px;
+        padding: 8px;
+        margin: 10px auto;
+    }
+
+    .carousel-img {
+        max-height: 200px; /* Ainda mais restritivo */
+    }
+
+    .love-timer {
+        font-size: 1em; /* Tamanho de fonte menor para caber em telas mínimas */
+        word-break: break-word; /* Permite quebrar palavras em caso de espaço muito limitado */
+    }
+}
