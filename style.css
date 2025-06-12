@@ -1,4 +1,4 @@
-@import url('https://fonts.com/css2?family=Montserrat:wght@300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
 
 :root {
     --primary-color: #e0f2f7; /* Azul clarinho */
@@ -13,7 +13,6 @@ body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     color: var(--text-color-light);
-    /* Removido: overflow: hidden; -> AGORA PODE ROLAR! */
     background-image: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3I2c2lxY3NlcmFzcTBlbDl1c3lwd3YzMXZhODhzMm1xZnNoMWlwYSZlcD1vMV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UYBDCJjwOd9Re/giphy.gif');
     background-size: cover;
     background-position: center;
@@ -25,8 +24,9 @@ body {
     align-items: center;
     position: relative;
     padding-bottom: 5px;
-    /* Aplicado backdrop-filter ao body para efeito global, se desejar */
-    /* backdrop-filter: blur(5px); */ /* Descomente esta linha se quiser o GIF borrado em TODO o fundo */
+    /* Remover overflow hidden para permitir rolagem, se necessário */
+    overflow-y: auto; /* Permite rolagem vertical apenas se o conteúdo exceder */
+    overflow-x: hidden; /* Garante que não haja rolagem horizontal */
 }
 
 /* Header */
@@ -35,12 +35,12 @@ body {
     padding: 8px 15px;
     display: flex;
     justify-content: center;
-    background-color: var(--overlay-color); /* Fundo transparente para o header */
+    background-color: var(--overlay-color);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     z-index: 10;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    backdrop-filter: blur(5px); /* Efeito de blur apenas no header */
+    backdrop-filter: blur(5px);
 }
 
 /* Estilos para o elemento de áudio */
@@ -53,7 +53,7 @@ audio {
     filter: invert(1);
 }
 
-/* Conteúdo Principal - Voltou a ter seu próprio fundo e blur */
+/* Conteúdo Principal */
 .content-container {
     flex-grow: 1;
     display: flex;
@@ -62,12 +62,15 @@ audio {
     width: 90%;
     max-width: 750px;
     margin: 10px auto;
-    padding: 10px; /* Padding interno para o conteúdo */
-    background-color: var(--overlay-color); /* Fundo transparente para o contêiner principal */
+    padding: 10px;
+    background-color: var(--overlay-color);
     border-radius: 20px;
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px); /* Efeito de blur no contêiner principal */
+    backdrop-filter: blur(5px);
     box-sizing: border-box;
+    /* Nova propriedade para limitar a altura do contêiner principal em telas pequenas */
+    max-height: 70vh; /* Limita a altura máxima a 70% da altura da viewport */
+    overflow-y: auto; /* Adiciona rolagem interna se o conteúdo exceder essa altura */
 }
 
 .carousel {
@@ -77,18 +80,18 @@ audio {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow: hidden; /* Mantém as imagens dentro do carrossel */
     border-radius: 15px;
-    box-shadow: none; /* Removido box-shadow daqui para evitar "segundo quadrado" */
-    background-color: transparent; /* Fundo transparente, o fundo virá do content-container */
-    padding: 0; /* Removido padding interno, já tem no content-container */
+    box-shadow: none;
+    background-color: transparent;
+    padding: 0;
     box-sizing: border-box;
 }
 
 .carousel-img {
     width: 100%;
     height: auto;
-    max-height: 380px;
+    max-height: 300px; /* Reduzida para que as fotos não tomem tanto espaço no desktop */
     display: none;
     border-radius: 10px;
     object-fit: contain;
@@ -109,7 +112,7 @@ audio {
 .footer-container {
     width: 100%;
     padding: 8px;
-    background-color: var(--overlay-color); /* Fundo transparente para o footer */
+    background-color: var(--overlay-color);
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
     z-index: 10;
@@ -120,7 +123,7 @@ audio {
     align-items: center;
     justify-content: center;
     min-height: 50px;
-    backdrop-filter: blur(5px); /* Efeito de blur apenas no footer */
+    backdrop-filter: blur(5px);
 }
 
 .love-timer {
@@ -153,15 +156,12 @@ audio {
     .content-container {
         width: 95%;
         margin: 8px auto;
-        padding: 8px; /* Mantém padding para o conteúdo interno */
-    }
-
-    .carousel {
-        padding: 0; /* Removido padding interno do carrossel */
+        padding: 8px;
+        max-height: 60vh; /* Ajuste para telas médias */
     }
 
     .carousel-img {
-        max-height: 250px;
+        max-height: 200px; /* Reduz a altura máxima das imagens em telas médias */
     }
 
     .love-timer {
@@ -181,48 +181,47 @@ audio {
 
     .content-container {
         border-radius: 10px;
-        padding: 5px; /* Mantém padding para o conteúdo interno */
+        padding: 5px;
         margin: 5px auto;
+        max-height: 55vh; /* Mais agressivo para telas de celular pequenas */
     }
     
-    .carousel {
-        padding: 0;
-    }
-
     .carousel-img {
-        max-height: 150px;
+        max-height: 120px; /* Reduz ainda mais a altura das imagens em celulares pequenos */
     }
 
     .love-timer {
-        font-size: 0.9em;
+        font-size: 0.9em; /* Aumentado um pouco para celular, pois teremos mais espaço vertical */
         line-height: 1.4;
     }
 }
 
 @media (max-width: 320px) {
-    .love-timer {
-        font-size: 0.8em;
-        line-height: 1.5;
-        padding: 0;
-    }
-    .carousel-img {
-        max-height: 120px;
-    }
-}
-
-@media (max-width: 812px) and (max-height: 375px) and (orientation: landscape) {
     .content-container {
-        margin: 3px auto;
-        padding: 5px; /* Mantém padding para o conteúdo interno */
-    }
-    .carousel {
-        padding: 0;
+        max-height: 50vh; /* Para celulares muito pequenos */
     }
     .carousel-img {
         max-height: 100px;
     }
     .love-timer {
         font-size: 0.8em;
+        line-height: 1.5;
+        padding: 0;
+    }
+}
+
+/* iPhone 12 mini em paisagem */
+@media (max-width: 812px) and (max-height: 375px) and (orientation: landscape) {
+    .content-container {
+        margin: 3px auto;
+        padding: 5px;
+        max-height: 50vh; /* Ajuste crítico para paisagem em telas compactas */
+    }
+    .carousel-img {
+        max-height: 80px; /* Muito restritivo para paisagem em telas pequenas */
+    }
+    .love-timer {
+        font-size: 0.9em; /* Levemente maior que antes para paisagem */
         line-height: 1.3;
     }
 }
